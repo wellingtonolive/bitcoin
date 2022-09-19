@@ -1,9 +1,0 @@
-{
-   "message":"Ufa, deu certo",
-   "header":{
-      "http":"PUT",
-      "email":"Criando arquivo JSON"
-   },
-   "isNewArquivo":"true",
-   "extension":"json"
-}
