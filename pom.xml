@@ -35,13 +35,17 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
+<!--    <dependency>-->
+<!--      <groupId>software.amazon.awssdk</groupId>-->
+<!--      <artifactId>transcribe</artifactId>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>software.amazon.awssdk</groupId>-->
+<!--      <artifactId>sfn</artifactId>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>software.amazon.awssdk</groupId>
-      <artifactId>transcribe</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>software.amazon.awssdk</groupId>
-      <artifactId>sfn</artifactId>
+      <artifactId>ssm</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>

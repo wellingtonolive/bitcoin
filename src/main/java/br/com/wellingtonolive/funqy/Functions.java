@@ -1,16 +1,9 @@
 package br.com.wellingtonolive.funqy;
 
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+
 import io.quarkus.funqy.Funq;
-import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
-import software.amazon.awssdk.regions.Region;
-import software.amazon.awssdk.services.sfn.SfnClient;
-import software.amazon.awssdk.services.sfn.model.SfnException;
-import software.amazon.awssdk.services.sfn.model.StartExecutionRequest;
-import software.amazon.awssdk.services.sfn.model.StartExecutionResponse;
+
 
 import java.util.UUID;
 
@@ -26,57 +19,57 @@ public class Functions {
         //Retirar JSONOBJECT
         // FAZER ASSIM A CHAMADA PARA WORKFLOW
 
-
-        SfnClient sfnClient = SfnClient.builder()
-                .region(Region.US_EAST_1)
-                .build();
-
-        System.out.println(sfnClient);
-
-        String exeArn = startWorkflow(sfnClient,stateMachineArn);
-        System.out.println(exeArn);
-
-        System.out.println("Exeucao :::" + exeArn);
-        sfnClient.close();
+//
+//        SfnClient sfnClient = SfnClient.builder()
+//                .region(Region.US_EAST_1)
+//                .build();
+//
+//        System.out.println(sfnClient);
+//
+//        String exeArn = startWorkflow(sfnClient,stateMachineArn);
+//        System.out.println(exeArn);
+//
+//        System.out.println("Exeucao :::" + exeArn);
+//        sfnClient.close();
 
         return "Hello WORLD";
     }
 
-    private String startWorkflow(SfnClient sfnClient, String stateMachineArn) {
-
-        UUID uuid = UUID.randomUUID();
-        String uuidValue = uuid.toString();
-
-        try{
-
-            Payload body = new Payload(true);
-
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            String json = ow.writeValueAsString(body);
-
-
-            System.out.println(json);
-
-            StartExecutionRequest executionRequest = StartExecutionRequest.builder()
-                    .input(json)
-                    .stateMachineArn(stateMachineArn)
-                    .name(uuidValue)
-                    .build();
-
-            System.out.println("executionRequest" + executionRequest);
-
-            StartExecutionResponse startExecutionResponse = sfnClient.startExecution(executionRequest);
-
-            System.out.println("startExecutionResponse" + startExecutionResponse);
-
-            return startExecutionResponse.executionArn();
-
-        }catch (Exception e){
-            System.out.println("DEU ERROOO");
-            System.out.println(e);
-
-        }
-
-        return "";
-    }
+//    private String startWorkflow(SfnClient sfnClient, String stateMachineArn) {
+//
+//        UUID uuid = UUID.randomUUID();
+//        String uuidValue = uuid.toString();
+//
+//        try{
+//
+//            Payload body = new Payload(true);
+//
+//            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+//            String json = ow.writeValueAsString(body);
+//
+//
+//            System.out.println(json);
+//
+//            StartExecutionRequest executionRequest = StartExecutionRequest.builder()
+//                    .input(json)
+//                    .stateMachineArn(stateMachineArn)
+//                    .name(uuidValue)
+//                    .build();
+//
+//            System.out.println("executionRequest" + executionRequest);
+//
+//            StartExecutionResponse startExecutionResponse = sfnClient.startExecution(executionRequest);
+//
+//            System.out.println("startExecutionResponse" + startExecutionResponse);
+//
+//            return startExecutionResponse.executionArn();
+//
+//        }catch (Exception e){
+//            System.out.println("DEU ERROOO");
+//            System.out.println(e);
+//
+//        }
+//
+//        return "";
+//    }
 }
